@@ -1,5 +1,5 @@
 from datasets import load_dataset
-from transformers import AutoModelForCausalLM, Trainer, TrainingArguments, AutoTokenizer
+from transformers import AutoModelForCausalLM, Trainer, TrainingArguments, AutoTokenize,DataCollatorWithPadding
 import numpy as np
 import yaml
 
@@ -23,6 +23,7 @@ learning_rate = config["learning_rate"]
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name, attn_implementation="sdpa")
+data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
 
 ds = load_dataset(dsn, split="train") 
@@ -45,6 +46,7 @@ trainer = Trainer(
     model=model,
     args=training_args,
     train_dataset=ds,
+    data_collator=data_collator,
 )
 
 trainer.train()
