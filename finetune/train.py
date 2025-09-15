@@ -37,7 +37,7 @@ training_args = TrainingArguments(
     bf16=True,
     output_dir=f"./{base_repo_id}", 
     save_steps=save_steps,
-    remove_unused_columns=True, 
+    remove_unused_columns=False, 
     learning_rate=learning_rate,
     report_to="none" 
 )
