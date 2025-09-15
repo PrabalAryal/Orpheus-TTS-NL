@@ -24,7 +24,7 @@ learning_rate = config["learning_rate"]
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name, attn_implementation="sdpa")
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
-
+tokenizer.pad_token_id = 128263
 
 ds = load_dataset(dsn, split="train") 
 
