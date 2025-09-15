@@ -1,5 +1,5 @@
 from datasets import load_dataset
-from transformers import AutoModelForCausalLM, Trainer, TrainingArguments, AutoTokenize,DataCollatorWithPadding
+from transformers import AutoModelForCausalLM, Trainer, TrainingArguments, AutoTokenizer,DataCollatorWithPadding
 import numpy as np
 import yaml
 
