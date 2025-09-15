@@ -4,7 +4,7 @@ import numpy as np
 import yaml
 import wandb
 
-config_file = "config.yaml"
+config_file = "/kaggle/working/Orpheus-TTS-NL/finetune/config.yaml"
 
 with open(config_file, "r") as file:
     config = yaml.safe_load(file)
