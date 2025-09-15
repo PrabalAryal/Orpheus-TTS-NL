@@ -12,6 +12,6 @@ save_steps: 5000
 learning_rate: 3.0e-5
 
 # Naming and paths
-save_folder: "checkpoints"
+save_folder: "orpheus-nl-checkpoints"
 project_name: "tuning-orpheus"
 run_name: "3e5-0"
