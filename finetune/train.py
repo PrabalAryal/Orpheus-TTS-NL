@@ -23,8 +23,6 @@ learning_rate = config["learning_rate"]
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name, attn_implementation="sdpa")
-data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
-tokenizer.pad_token_id = 128263
 
 ds = load_dataset(dsn, split="train") 
 
@@ -34,10 +32,11 @@ training_args = TrainingArguments(
     num_train_epochs=epochs,
     per_device_train_batch_size=batch_size, 
     logging_steps=1,
-    bf16=True,
+    bf16=False,
+    fp16=True,
     output_dir=f"./{base_repo_id}", 
     save_steps=save_steps,
-    remove_unused_columns=False, 
+    remove_unused_columns=True, 
     learning_rate=learning_rate,
     report_to="none" 
 )
@@ -46,7 +45,6 @@ trainer = Trainer(
     model=model,
     args=training_args,
     train_dataset=ds,
-    data_collator=data_collator,
 )
 
 trainer.train()
