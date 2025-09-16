@@ -38,7 +38,8 @@ training_args = TrainingArguments(
     save_steps=save_steps,
     remove_unused_columns=True, 
     learning_rate=learning_rate,
-    report_to="none" 
+    report_to="none",
+    gradient_accumulation_steps=8,
 )
 
 trainer = Trainer(
