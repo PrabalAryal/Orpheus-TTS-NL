@@ -24,7 +24,7 @@ learning_rate = config["learning_rate"]
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name, attn_implementation="sdpa")
 
-ds = load_dataset(dsn, split="train") 
+ds = load_dataset(dsn, split="train[0:500]") 
 
 
 training_args = TrainingArguments(
@@ -39,7 +39,7 @@ training_args = TrainingArguments(
     remove_unused_columns=True, 
     learning_rate=learning_rate,
     report_to="none",
-    gradient_accumulation_steps=8,
+    gradient_accumulation_steps=4,
 )
 
 trainer = Trainer(
